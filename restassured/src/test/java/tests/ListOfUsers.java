@@ -1,6 +1,7 @@
 package tests;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -28,6 +29,32 @@ public class ListOfUsers {
 		Assert.assertEquals(listUsersResponse.getPage(), 1);
 		
 		for (Data data : listOfusers) {
+			System.out.println(data);
+		}
+	}
+	
+	@Test
+	public void verifyGetUsersFilteredJsonPath() {
+		Response response = userClient.getListOfUsers(2);
+
+		Assert.assertEquals(response.statusCode(), 200);
+		
+		//ListUsersResponse listUsersResponse=response.jsonPath().getList("data", Data.class);
+		List<Data> listOfusers=response.jsonPath().getList("data", Data.class);
+		
+		System.out.println("Data size "+listOfusers.size());
+		
+		for (Data data : listOfusers) {
+			System.out.println(data);
+		}
+		
+		List<Data> listOfusersFiltered=listOfusers.stream()
+				.filter(u->u.getId()>9)
+				.collect(Collectors.toList());
+		
+		System.out.println("Data size "+listOfusersFiltered.size());
+		
+		for (Data data : listOfusersFiltered) {
 			System.out.println(data);
 		}
 	}
