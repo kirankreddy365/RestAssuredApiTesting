@@ -15,26 +15,24 @@ public class ExtentReportManager {
 	
 	public static ExtentReports getExtentReports() {
 		
+		
+		//tring reportName=(groupName == null || groupName.isBlank()) ? "Api-test-report" : groupName;
+		
+		//System.out.println("Report name is : "+ExtentTestListener.testName);
+		String env=System.getProperty("env");
+		String user=System.getProperty("user.name");
 		if(extent==null) {
-			ExtentSparkReporter reporter=new ExtentSparkReporter("src/test/resources/Reports/Api-test-report.html");
+			ExtentSparkReporter reporter=new ExtentSparkReporter("Reports/"+"test-report"+".html");
 			reporter.config().setDocumentTitle("Api Testing Report");
 			reporter.config().setReportName("Rest Assured Test Execution");
 			reporter.config().setTheme(Theme.DARK);
 			
 			extent=new ExtentReports();
-			extent.setSystemInfo("Tester", "KKReddy");
-			extent.setSystemInfo("Env", "Staging");
+			extent.setSystemInfo("User", user);
+			extent.setSystemInfo("Env", env);
 			extent.attachReporter(reporter);
 		}
 		
-//		extent=new ExtentReports();
-//		ExtentSparkReporter spark = new ExtentSparkReporter("src/test/resources/Reports/Api-test-report.html");
-//		spark.config().setDocumentTitle("Api Testing Report");
-//		spark.config().setReportName("Rest Assured Test Execution");
-//		spark.config().setTheme(Theme.DARK);
-//		extent.setSystemInfo("Tester", "KKReddy");
-//		extent.setSystemInfo("Env", "Staging");
-//		extent.attachReporter(spark);
 		return extent;
 	}
 	

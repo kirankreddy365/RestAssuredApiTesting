@@ -18,7 +18,7 @@ public class ExtentTestListener implements ITestListener {
 	// private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
 	private static Map<String, ExtentTest> classTestMap = new HashMap<>();
-
+	
 	@Override
 	public void onTestStart(ITestResult result) {
 		String className = result.getTestClass().getRealClass().getSimpleName();

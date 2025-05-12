@@ -8,23 +8,15 @@ import java.util.Properties;
 public class ConfigManager {
 	
 	private static Properties properties = new Properties();
+	private static FileInputStream fis;
 	
-//	static {
-//		try {
-//			
-//			FileInputStream fis=new FileInputStream("\\src\\test\\resources\\config\\config.properties");
-//           
-//            properties.load(fis);
-//        } catch (Exception e) {
-//            throw new RuntimeException("Failed to load config.properties!", e);
-//        }
-//	}
-	
-	public static String get(String key) {
-		FileInputStream fis;
+	public static void loadConfig(String env) {
 		try {
-			fis = new FileInputStream("src/test/resources/config/config.properties");
-	        properties.load(fis);
+			if(fis==null) {
+				fis = new FileInputStream("src/test/resources/config/config-"+env+".properties");
+		        properties.load(fis);
+		        System.out.println("Current Environment is: "+env);
+			}
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -33,6 +25,9 @@ public class ConfigManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static String get(String key) {
         
         return properties.getProperty(key);
     }

@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import clients.UserClient;
+import config.Setup;
 import io.restassured.response.Response;
 import models.Data;
 import models.ListUsersResponse;
@@ -15,7 +16,7 @@ public class ListOfUsers {
 
 	UserClient userClient = new UserClient();
 
-	@Test
+	@Test(groups= {"smoke", "retest"})
 	public void verifyGetAllUsers() {
 		Response response = userClient.getListOfUsers(1);
 

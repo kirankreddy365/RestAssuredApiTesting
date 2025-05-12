@@ -3,6 +3,7 @@ package tests;
 import org.testng.annotations.Test;
 
 import clients.UserClient;
+import config.Setup;
 import io.restassured.module.jsv.JsonSchemaValidator;
 
 public class SchemaTest {

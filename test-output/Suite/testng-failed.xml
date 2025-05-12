@@ -3,19 +3,17 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <listeners>
     <listener class-name="listeners.ExtentTestListener"/>
+    <listener class-name="listeners.RetryListener"/>
   </listeners>
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="tests.UpdateTest">
+      <class name="tests.FailTests">
         <methods>
-          <include name="verifyUpdatePut"/>
+          <include name="failtest1"/>
+          <include name="failtest2"/>
+          <include name="passtest1"/>
         </methods>
-      </class> <!-- tests.UpdateTest -->
-      <class name="tests.UserTests">
-        <methods>
-          <include name="verifyUserNotFound"/>
-        </methods>
-      </class> <!-- tests.UserTests -->
+      </class> <!-- tests.FailTests -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

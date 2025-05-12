@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import clients.UserClient;
+import config.Setup;
 import io.restassured.response.Response;
 import models.SingleUserResponse;
 import models.UserRequest;
@@ -13,7 +14,7 @@ public class UserTests {
 	
 	UserClient userClient=new UserClient();
 	
-	@Test
+	@Test(groups= {"smoke", "retest"})
 	public void verifygetUser() {
 		
 		Response response=userClient.getSingleUser(2);
@@ -34,11 +35,11 @@ public class UserTests {
 		
 		Response response=userClient.getSingleUser(23);
 
-		Assert.assertEquals(response.statusCode(), 403, "Status code failed.");
+		Assert.assertEquals(response.statusCode(), 404, "Status code failed.");
 
 	}
 	
-	@Test
+	@Test(groups= {"smoke"})
 	public void verifyCreateUser() {
 		 
 		UserRequest userRequest=new UserRequest("QATest1", "QATitle1");
